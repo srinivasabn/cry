@@ -1,1 +1,419 @@
+p1.
+(a)
+open badstore
+login as admin' -- 
+change in addressbar -> login to admin
+change dropdown to select current users
+click do it
+copy password of joe@supplier.com
+right click on password select google for search
+select MD5 
+do reverse for password
+you can able to see password
 
+come back to badstore
+click what's new on left side
+add 1 item in cart
+click view cart
+go to inspect 
+storage 
+open cookies section copy card id value
+go to new tab open urldecoder.org
+put value in this and decode 
+decode is the output for that
+
+
+(b)HxDriver drowsiness detection
+sudo scapy
+from scapy.all import *
+packet = Ether()/IP(dst="192.168.1.1")
+packet.show()
+
+
+(c)
+sudo nano port_scan.sh
+write program :
+#!/bin/bash
+host="www.example.com" 
+read -p "Enter the starting port number: " start_port
+read -p "Enter the ending port number: " end_port
+for (( port=start_port; port<=end_port; port++ ))
+do
+    echo "Scanning port $port..."
+    nc -zv -w1 "$host" "$port" 2>&1
+done
+
+save with ctyrl + s
+ctrl +x to exit
+sudo chmod +x port_scan.sh
+./port_scan.sh
+
+after that enter starting port number : 22
+ending port number is: 80
+when succeed show the output
+
+p2:
+
+(a)
+open badstore
+open firefox search address of badstore
+go to login -> 
+name : joe@supplier.com
+password: iforgot
+click login
+got to left side prevoius order -> open it
+type -> ctrl +f 
+type 46.95 in left botton search
+write the card used values for all 46.95 values in the output.
+
+(b)
+sudo scapy
+>>> packet=sniff(count=10)
+>>> packet.summary()
+>>> for i in range(10):
+	print(packet[i].show())
+
+(c)
+nc -vlp 1234
+nc localhost 1234
+
+p3.
+
+(a)
+sudo scapy
+>>> from scapy.all import *
+>>> result,_ = traceroute(["www.example.com","www.google.com"], maxttl=20)
+>>> result.show()
+
+
+(b)
+nc example.com 80
+HEAD / HTTP/1.1
+HOST: example.com
+
+nc example.com 80
+GET / HTTP/1.1
+HOST: example.com
+
+(c)
+open zenmap in windows
+type in command section
+>> nmap -sn google.com   (for ping scan)
+>>nmap -sn ip address   (for single scan)
+
+p4.
+(a)
+open command prompt in window 
+>> scapy
+
+then write this below code 
+
+from scapy.all import *
+
+# 1. Define the target
+target_subnet = "192.168.1.0/24"
+
+# 2. Send the ARP request and collect answers
+answered, unanswered = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(pdst=target_subnet), timeout=2, verbose=False)
+
+# 3. Print the results
+for sent, received in answered:
+    print(f"Host Up: {received.psrc} MAC: {received.hwsrc}")
+
+(b)
+>> nc -l -p 5000
+go to browser firefox and search -> localhost:5000
+come back to terminal
+>> HTTP/1.1 200 OK
+>> Content-Type- text/plain
+hello world
+ctrl+c
+got to browser see that msz.
+
+(c)
+nmap 192.168.1.101-120   (for range scan)
+nmap 192.168.1.0/24  (for subnetting)
+
+p5.
+(a)
+open badstore 
+click what's new add item to cart
+go to search left side
+<script>alert(document.cookie)</script>
+enter -> ouput is card id
+
+(b)
+sudo nano port_scan.sh
+
+#!/bin/bash
+host="www.example.com"
+read -p "Enter starting port: " start_port
+read -p "Enter ending port: " end_port
+
+for (( port=start_port; port<=end_port; port++ ))
+do
+    echo "Scanning port $port..."
+    nc -zv -w1 "$host" "$port" 2>&1
+done
+
+ctrl+x 
+
+sudo chmod +x port_scan.sh
+./port_scan.sh
+
+enter starting port number: 22
+enter ending port number: 80
+
+(c)
+nmap 192.168.56.1
+nmap www.google.com
+
+nmap -sV 192.168.56.1
+nmap -sV www.google.com
+
+
+p6.
+
+(a)
+open badstore 
+click what's new add item to cart
+go to search left side
+<script>alert(document.cookie)</script>
+enter -> ouput is card id
+
+(b)
+nmap -O 192.168.56.1
+nmap -O bnmit.org
+
+nmap -A 192.168.56.1
+nmap -A google.com
+
+(c)
+open badstore
+admin login
+search -> inspect -> remove maxlength
+then search -> xx' IN (itemnum,sdesc,ldesc) union select email,passwd,123,123 from userdb LIMIT 2 -- 
+copy admin password and right click and search for google 
+open MD5 -> reverse -> below you can able to see password for that
+
+come back at badstore -> now login with admin with using password secret
+go to address bar change -> login -> admin
+in drop down menu select add user
+click do it
+inspect that page from blank area
+ctrl + f
+search hidden in inspect part
+you can able to see the hidden password field
+this is the output to show ..
+
+p7.
+(a)
+open cmd in windows
+>> scapy
+>>from scapy.all import *
+>>packet=IP(dst="8.8.8.8")/ICMP()
+>>send(packet)
+
+open wireshark 
+stop
+search icmp
+
+(b)
+go to browser and open wikipdedia image in new tab and copyimage link
+open terminal
+>> nc -l -p 5000
+
+go to browser firefox and search -> localhost:5000
+
+come back to terminal
+
+>> HTTP/1.1 200 OK
+>> Content-Type- text/html; charset=UTF-8
+>> server: nooblinux
+
+<!doctype html>
+<title>bnm</title>
+<h1>cars</h1>
+<img src="copy link">
+
+(c)
+open badstore
+login joe@supplier.com in login/register section
+search left side -> x
+copy sql query till itemdb
+paste it in search left side-> add : x' union (paste query) -- 
+open inspect of searchbar
+remove maxlength
+again write in searchbar -> x' union SELECT count(itemnum), count(itemum), count(itemnum), count(price) FROM itemdb -- 
+
+show the output quantity of table item in cart....
+
+p8.
+(a)
+from scapy.all import *
+>>> target_ip="192.168.2.31"
+>>> ports = [22, 80, 443]
+>>> for port in ports:
+...:     packet = IP(dst=target_ip)/TCP(dport=port,flags="S")
+...:     response=sr1(packet,timeout=1,verbose=0)
+...:     if response:
+...:         if response[TCP].flags=="SA":
+...:             print(f"Port {port} is open")
+...:         elif response[TCP].flags=="RA":
+...:             print(f"Port {port} is closed")
+
+(b)
+nmap --script vuln google.com
+nmap --script vuln 192.168.56.1
+nmap -oN output.txt --script vuln 192.168.56.1
+
+(c)
+open badstore 
+login -> admin' -- 
+click login
+select current user -> click do it
+copy joe@supplier.com password 
+right -> search in google -> open first site MD5 one -> check password
+
+come back in badstore -> click supplier login
+name : joe@supplier.com
+password : iforgot ( or which on u got in the MD5)
+show the answer of upload price list
+
+
+p9.
+(a)
+go to browser and open wikipdedia image in new tab and copyimage link
+open terminal
+>> nc -l -p 5000
+
+go to browser firefox and search -> localhost:5000
+
+come back to terminal
+
+>> HTTP/1.1 200 OK
+>> Content-Type- text/html; charset=UTF-8
+>> server: nooblinux
+
+<!doctype html>
+<title>bnm</title>
+<h1>cars</h1>
+<img src="copy link">
+
+(b)
+nmap 192.168.1.101-120   (for range scan)
+nmap 192.168.1.0/24  (for subnetting)
+
+(c)
+open badstore
+open firefox search address of badstore
+go to login -> 
+name : joe@supplier.com
+password: iforgot
+click login
+got to left side prevoius order -> open it
+type -> ctrl +f 
+type 46.95 in left botton search
+write the card used values for all 46.95 values in the output.
+
+p10.
+(a)
+from scapy.all import *
+def packet_callback(packet):
+     if packet[IP].proto==1:
+         print(f"ICMP packet from {packet[IP].src}")
+sniff(prn=packet_callback,filter="icmp",store=0)
+
+(b)
+nmap 192.168.56.1
+nmap www.google.com
+
+nmap -sV 192.168.56.1
+nmap -sV www.google.com
+
+(c)
+open badstore
+as admin login
+go to addressbar and change "login -> admin"
+in drag drop select current users
+click do it
+click ctrl+f
+type in bottom left search -> whole.biz
+and show the name of that ids as output...
+
+
+
+p11.
+(a)
+open command prompt in window 
+>> scapy
+
+then write this below code 
+
+from scapy.all import *
+
+# 1. Define the target
+target_subnet = "192.168.1.0/24"
+
+# 2. Send the ARP request and collect answers
+answered, unanswered = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(pdst=target_subnet), timeout=2, verbose=False)
+
+# 3. Print the results
+for sent, received in answered:
+    print(f"Host Up: {received.psrc} MAC: {received.hwsrc}")
+
+(b)
+go to browser and open wikipdedia image in new tab and copyimage link
+open terminal
+>> nc -l -p 5000
+
+go to browser firefox and search -> localhost:5000
+
+come back to terminal
+
+>> HTTP/1.1 200 OK
+>> Content-Type- text/html; charset=UTF-8
+>> server: nooblinux
+
+<!doctype html>
+<title>bnm</title>
+<h1>cars</h1>
+<img src="copy link">
+
+(c)
+open badstore and login as admin or supplier 
+then search left side searchbar -> <script>alert(document.cookie)</script>
+show the output as cartid and value of that.
+
+
+p12.
+(a)
+sudo scapy
+>>> from scapy.all import *
+>>> result,_ = traceroute(["www.example.com","www.google.com"], maxttl=20)
+>>> result.show()
+
+(b)
+go to browser and open wikipdedia image in new tab and copyimage link
+open terminal
+>> nc -l -p 5000
+
+go to browser firefox and search -> localhost:5000
+
+come back to terminal
+
+>> HTTP/1.1 200 OK
+>> Content-Type- text/html; charset=UTF-8
+>> server: nooblinux
+
+<!doctype html>
+<title>bnm</title>
+<h1>cars</h1>
+<img src="copy link">
+
+(c)
+open badstore 
+click what's new add item to cart
+go to search left side
+<script>alert(document.cookie)</script>
+enter -> ouput is card id
